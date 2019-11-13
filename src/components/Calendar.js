@@ -113,24 +113,26 @@ class Calendar extends Component {
   nextMonth = () => {
     this.setState({
       currentMonth: dateFns.addMonths(this.state.currentMonth, 1),
+      showEvent: false,
     });
   };
 
   prevMonth = () => {
     this.setState({
       currentMonth: dateFns.subMonths(this.state.currentMonth, 1),
+      showEvent: false,
     });
   };
 
   render() {
     return (
-      <div className="calendar" onBlur={this.handleBlur}>
+      <div className="calendar">
         {this.renderHeader()}
         {this.renderDays()}
         {this.renderCells()}
-        {this.state.showEvent ? (
+        {this.state.showEvent && (
           <Event closeEvent={this.toggleEvent.bind(this)} />
-        ) : null}
+        )}
       </div>
     );
   }
